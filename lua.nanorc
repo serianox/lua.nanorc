@@ -1,0 +1,92 @@
+# #############################################################################
+#
+# Lua syntax highlighting for nano
+#
+# Author: Thomas Duboucher <thomas (at) duboucher (dot) eu>
+# Licence: GPL version 2.0 or later
+#
+# Taken from Matthew Wild when I was younger.
+#
+# #############################################################################
+
+# Automatically use for Lua files
+syntax "lua" ".*\.(lua|rockspec|nse|lp)$"
+
+# General
+color white ".+"
+
+# Keywords
+color cyan "\<(do|end|while|repeat|until|if|elseif|then|else|for|in|function|local|return|break)\>"
+
+# Standard libraries
+color yellow "\<(_ENV|_G|_VERSION)\>"
+color yellow "\<(assert|collectgarbage|dofile|error|getfenv|getmetatable|ipairs|load|loadfile|loadstring|module|next|pairs|pcall|print|rawequal|rawget|rawset|select|setfenv|setmetatable|tonumber|tostring|type|unpack|xpcall)\s*\("
+color yellow "require\s*\(?\s*\""
+#color yellow "\<(coroutine|package|string|table|math|bit32|io|os|debug)\>\."
+color yellow "coroutine\.\<(create|resume|running|status|wrap|yield)\>"
+color yellow "package\.\<(cpath|loaded|loaders|loadlib|path|preload|searchers|searchpath|seeall)\>"
+color yellow "string\.\<(byte|char|dump|find|format|gmatch|gsub|len|lower|match|rep|reverse|sub|upper)\>"
+color yellow "table\.\<(concat|insert|maxn|pack|remove|sort)\>"
+color yellow "math\.\<(abs|acos|asin|atan2|atan|ceil|cosh|cos|deg|exp|floor|fmod|frexp|huge|ldexp|log10|log|max|min|modf|pi|pow|rad|random|randomseed|sinh|sin|sqrt|tanh|tan)\>"
+color yellow "bit32\.\<(arshift|band|bnot|bor|btest|bxor|extract|replace|lrotate|lshift|rrotate|rshift)\>"
+color yellow "io\.\<(close|flush|input|lines|open|output|popen|read|tmpfile|type|write)\>"
+color yellow "os\.\<(clock|date|difftime|execute|exit|getenv|remove|rename|setlocale|time|tmpname)\>"
+color yellow "debug\.\<(debug|getfenv|gethook|getinfo|getlocal|getmetatable|getregistry|getupvalue|getuservalue|setfenv|sethook|setlocal|setmetatable|setupvalue|traceback|upvalueid|upvaluejoin)\>"
+# File handle methods
+color yellow "\:\<(close|flush|lines|read|seek|setvbuf|write)\>"
+
+# Symbols
+color magenta "\(|\)|\[|\]|\{|\}|;|,|\.\.\.|\.\."
+# Operators
+color yellow "\+|-|\*|/|%|\^|#|==|~=|<=|>=|<|>|=|:|\.|\<(not|and|or)\>"
+
+# Literals
+#   Booleans
+color magenta "\<(false|nil|true)\>"
+#   Unmatched Numbers
+color ,red "[0-9]+[eE]"
+color ,red "0[xX][0-9a-fA-F]+[pP][-\+]?"
+#   Numbers
+color red "\<([0-9]+)(\.[0-9]*)?([eE][-\+]?[0-9]+)?\>"
+color red "\<0[xX]([0-9a-fA-F]+)(\.[0-9a-fA-F]*)?(([eE][0-9a-fA-F]*)|([pP][-\+]?[0-9]+))?\>"
+#   Unmatched strings
+#color ,red "(\"(\\.|[^\\\"])*\"(\\.|[^\\\"])*)*\"(\\.|[^\\\"])*$|('(\\.|[^\\'])*'(\\.|[^\\'])*)*'(\\.|[^\\'])*$"
+#   Strings
+color red "\"(\\.|[^\\\"])*\"|'(\\.|[^\\'])*'"
+#   Unmatched multiline strings
+color ,red "\[=*\["
+#   Multiline strings
+color red start="\[\[" end="\]\]"
+color red start="\[=\[" end="\]=\]"
+color red start="\[==\[" end="\]==\]"
+color red start="\[===\[" end="\]===\]"
+color red start="\[====\[" end="\]====\]"
+#   Escapes
+color yellow "\\[0-9][0-9]?[0-9]?|\\x[0-9a-fA-F][0-9a-fA-F]|\\[abfnrtv\\\"'z]"
+
+# Comments
+color green "\-\-.*$"
+#   Unmatched Multiline comments
+color ,red "\-\-\[=*\["
+#   Multiline comments
+color green start="\-\-\[\[" end="\]\]"
+color green start="\-\-\[=\[" end="\]=\]"
+color green start="\-\-\[==\[" end="\]==\]"
+color green start="\-\-\[===\[" end="\]===\]"
+color green start="\-\-\[====\[" end="\]====\]"
+
+# Luadoc
+#   Begining of documentation
+color brightgreen "^\-\-\-.*$"
+#   Wrong tag
+color red "^\-\- @.*$"
+#   Luadoc tag
+color brightgreen "^\-\- @\<(param|see|return|usage|description|name|class|field|release)\>.*$"
+
+# Common markers
+#   Notes
+color blue "(X+X|TODO|FIXME|(\?)+\?)"
+#   Shebang
+color blue "^#!.*"
+#   Trailing whitespace
+color ,green "[[:space:]]+$"
