@@ -65,7 +65,7 @@ color red start="\[====\[" end="\]====\]"
 color yellow "\\[0-9][0-9]?[0-9]?|\\x[0-9a-fA-F][0-9a-fA-F]|\\[abfnrtv\\\"'z]"
 
 # Comments
-color green "\-\-.*$"
+color green "\-\-.*"
 #   Unmatched Multiline comments
 color ,red "\-\-\[=*\["
 #   Multiline comments
@@ -78,15 +78,17 @@ color green start="\-\-\[====\[" end="\]====\]"
 # Luadoc
 #   Begining of documentation
 color brightgreen "^\-\-\-.*$"
-#   Wrong tag
-color red "^\-\- @.*$"
+#   Wrong or unknown tag
+#color red "^\-\- @.*$"
 #   Luadoc tag
 color brightgreen "^\-\- @\<(param|see|return|usage|description|name|class|field|release)\>.*$"
+#   Leading dashes
+color green "-\-\-?"
 
 # Common markers
 #   Notes
-color blue "(X+X|TODO|FIXME|(\?)+\?)"
+color cyan "(X+X|TODO|FIXME|(\?)+\?).*"
 #   Shebang
-color blue "^#!.*"
+color cyan "^#!.*"
 #   Trailing whitespace
 color ,green "[[:space:]]+$"
