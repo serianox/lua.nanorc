@@ -10,7 +10,8 @@
 # #############################################################################
 
 # Automatically use for Lua files
-syntax "lua" ".*\.(lua|rockspec|nse|lp)$"
+syntax "lua" "\.(lua|rockspec|nse|lp)$"
+header "^#!(.+/)?lua(jit)?"
 
 # General
 color white ".+"
